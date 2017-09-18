@@ -20,7 +20,7 @@ var trans_rangoVal = "translate(" + (width-width/5) + "," + (height/2.35) + ")";
 // create svg and append it to the body of the document
 // group svg
 
-var svg = d3.select(".arcs")
+var svg = d3.select("#arcs")
         .append("svg:svg")
         .attr("width", width + width_padding)
         .attr("height", height + height_padding)
@@ -60,7 +60,7 @@ d3.csv('inmuebles.csv', function(error, data){
       var valores_asset = by_asset.map(function(d){
             return d.value;
       });
-      
+
       var total_asset = d3.sum(valores_asset);
 
       var porcentaje_asset = by_asset.map(function(d){
@@ -129,7 +129,7 @@ d3.csv('inmuebles.csv', function(error, data){
       });
 
 
-      // draw arc 
+      // draw arc
 
       //set arch characteristics
 
@@ -160,8 +160,8 @@ d3.csv('inmuebles.csv', function(error, data){
       //legend axis
 
       var labelAxis = [20, 30, 40, 50, 60, 70, 80, 90, 100, 10];
-      
-      
+
+
       //create axis
 
       var linesAsset = svg.append('g')
@@ -200,7 +200,7 @@ d3.csv('inmuebles.csv', function(error, data){
       .attr('d', arc)
       .on('mouseover', handleMouseOver)
       .on('mouseout', handleMouseOut);
-      
+
 
       //create title
 
@@ -218,7 +218,7 @@ d3.csv('inmuebles.csv', function(error, data){
       .append('g')
       .attr('class', 'legendAsset')
       .attr('transform', 'translate(' + 70 + ',' + (height-130) + ')');
-      
+
       var assetSorted = sortedAsset.map(function(d){return d.key.toUpperCase();});
       var upperAsset = assetSorted.map(function(d){if (d==='DEPARTAMENTO'){
             return 'DEPTO.';
@@ -279,7 +279,7 @@ d3.csv('inmuebles.csv', function(error, data){
       .attr('d', arc)
       .on('mouseover', handleMouseOver)
       .on('mouseout', handleMouseOut);
-      
+
       //create title
 
        var titleAqui = svg.append('g')
@@ -295,7 +295,7 @@ d3.csv('inmuebles.csv', function(error, data){
       .append('g')
       .attr('class', 'legendAqui')
       .attr('transform', 'translate(' + (width/4)*1.6 + ',' + (height-130) + ')');
-      
+
       var aquiSorted = sortedAqui.map(function(d){return d.key.toUpperCase();});
       var scaleAqui = d3.scaleOrdinal()
       .domain(aquiSorted)
@@ -335,7 +335,7 @@ d3.csv('inmuebles.csv', function(error, data){
       .attr('transform', function(d){return 'rotate(' + ((-1*d)+18) + ',120, 0)';})
       .data(labelAxis)
       .text(function(d){return d + '%';})
-      .style("text-anchor", function(d) { return d < 110 && d > 40 ? "middle" : null; });      
+      .style("text-anchor", function(d) { return d < 110 && d > 40 ? "middle" : null; });
 
       //create arcs
 
@@ -350,8 +350,8 @@ d3.csv('inmuebles.csv', function(error, data){
       .attr('d', arc)
       .on('mouseover', handleMouseOver)
       .on('mouseout', handleMouseOut);
-      
-      
+
+
       //create title
 
        var titleValue = svg.append('g')
@@ -367,7 +367,7 @@ d3.csv('inmuebles.csv', function(error, data){
       .append('g')
       .attr('class', 'legendValue')
       .attr('transform', 'translate(' + (width/8)*5.7 + ',' + (height-130) + ')');
-      
+
       var valueSorted = sortedValue.map(function(d){return d.key})
       var notNull = valueSorted.map(function(d){if (d==='NULL'){
             return 'NO DECLARADO';
@@ -409,7 +409,7 @@ d3.csv('inmuebles.csv', function(error, data){
       function handleMouseOut(document){
             d3.select('#info').remove();
       };
-      
+
       d3.selectAll('text')
       .style('font-family', 'monospace');
 
